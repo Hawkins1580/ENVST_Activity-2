@@ -32,12 +32,10 @@ Floods$datetime <- ymd_hm(Floods$datetime, tz="America/New_York")
 
 # Prompt #3
 # What was the earliest date that each river reached the flood stage?
-Floods %>% # data frame with pipe
+Earliest_Floods <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by unique names
-  
-  summarise(mean.height = mean(gheight.ft)) # next summarize using mean
-
-
+  filter(gheight.ft >= major.ft) %>% # filtering for flood height 
+  summarise(datetime = min(datetime)) # next summarize using min
 
 
 
