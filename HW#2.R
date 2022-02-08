@@ -38,3 +38,14 @@ Earliest_Floods <- Floods %>% # data frame with pipe
   summarise(earliest.datetime = min(datetime)) # next summarize using min
 
 
+
+# Homework #2
+
+# Part #1 - Mutate Function
+Floods_Mutated <- mutate(Floods,
+                        stage_meters = gheight.ft * 0.3048, # new column with stage in meters
+                        percent_flood = (gheight.ft / major.ft) * 100) # new column with stage in percent of flood height
+
+
+
+
