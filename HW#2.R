@@ -41,9 +41,15 @@ Earliest_Floods <- Floods %>% # data frame with pipe
 
 # Homework #2
 
-# Part #1 - Mutate Function
+# Part #1 - Mutate Function (saving output with assignment operator)
 Floods_Mutated <- mutate(Floods,
                         stage_meters = gheight.ft * 0.3048, # new column with stage in meters
                         percent_flood = (gheight.ft / major.ft) * 100) # new column with stage in percent of flood height
+
+
+# Example to show why we need assignment operator 
+mutate(Floods,
+       stage_meters = gheight.ft * 0.3048, # new column with stage in meters
+       percent_flood = (gheight.ft / major.ft) * 100) # new column with stage in percent of flood height
 
 # Ready to work with group on presentation
