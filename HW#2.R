@@ -46,7 +46,4 @@ Floods_Mutated <- mutate(Floods,
                         stage_meters = gheight.ft * 0.3048, # new column with stage in meters
                         percent_flood = (gheight.ft / major.ft) * 100) # new column with stage in percent of flood height
 
-# Method #2 
-mutate(Floods, stage_meters = gheight.ft * 0.3048, # new column with stage in meters
-       percent_flood = (gheight.ft / major.ft) * 100) # new column with stage in percent of flood height
 # Ready to work with group on presentation
