@@ -27,7 +27,7 @@ head(Floods)
 
 # Prompt #2
 # Parsing the date for the Floods data frame
-Floods$dateF <- ymd_hm(Floods$datetime, tz="America/New_York")
+Floods$datetime <- ymd_hm(Floods$datetime, tz="America/New_York")
 
 
 # Prompt #3
@@ -61,22 +61,22 @@ mutate(Floods,
 # Fisheating Creek Plot
 Fisheating_Creek <- Floods[Floods$names == "FISHEATING CREEK AT PALMDALE",]
 plot(Fisheating_Creek$datetime, Fisheating_Creek$gheight.ft, type="l", xlab="Date",
-     ylab = "Stage Height (ft)")
+     ylab = "Stage Height (ft)", main = "Fisheating River Stage Height")
 
 # Peace River Plot
 Peace_River <- Floods[Floods$names == "PEACE RIVER AT US 17 AT ZOLFO SPRINGS",]
 plot(Peace_River$datetime, Peace_River$gheight.ft, type="l", xlab="Date",
-     ylab = "Stage Height (ft)")
+     ylab = "Stage Height (ft)", main = "Peace River Stage Height")
 
 # Santa Fe Plot
-Santa_Fe <- Floods["SANTA FE RIVER NEAR FORT WHITE",]
+Santa_Fe <- Floods[Floods$names == "SANTA FE RIVER NEAR FORT WHITE",]
 plot(Santa_Fe$datetime, Santa_Fe$gheight.ft, type="l", xlab="Date",
-     ylab = "Stage Height (ft)")
+     ylab = "Stage height (ft)", main = "Santa Fe River Stage Height")
 
 # Withlachoochee River Plot
-Withlacoochee <- Floods["WITHLACOOCHEE RIVER AT US 301 AT TRILBY",]
-plot(Withlacoochee$datetime, Withlacoochee$gheight.ft, type="b", xlab="Date",
-     ylab = "Stage Height (ft)")
+Withlacoochee_River <- Floods[6474:8681,]
+plot(Withlacoochee_River$datetime, Withlacoochee_River$gheight.ft, type="l", xlab="Date",
+     ylab = "Stage Height (ft)", main = "Withlacoochee River Stage Height")
 
 
 
