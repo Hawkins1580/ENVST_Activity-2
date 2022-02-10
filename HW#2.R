@@ -15,7 +15,7 @@ library(lubridate)
 streamH <- read.csv("/cloud/project/activtiy02/stream_gauge.csv")
 siteInfo <- read.csv("/cloud/project/activtiy02/site_info.csv")
 
-
+# IN-CLASS PROMPTS
 # Prompt #1
 # Joining streamH and siteInfo into a data frame called Floods
 
@@ -27,7 +27,7 @@ head(Floods)
 
 # Prompt #2
 # Parsing the date for the Floods data frame
-Floods$datetime <- ymd_hm(Floods$datetime, tz="America/New_York")
+Floods$dateF <- ymd_hm(Floods$datetime, tz="America/New_York")
 
 
 # Prompt #3
@@ -39,7 +39,7 @@ Earliest_Floods <- Floods %>% # data frame with pipe
 
 
 
-# Homework #2
+# HOMEWORK #2
 
 # Part #1 - Mutate Function (saving output with assignment operator)
 Floods_Mutated <- mutate(Floods,
@@ -54,43 +54,30 @@ mutate(Floods,
 
 # Ready to work with group on presentation
 
+# Part #2
 
+# Question #1 - Make a separate plot of the stream stage data for each river
 
-# NOTES FROM PRESENTATIONS
+# Fisheating Creek Plot
+Fisheating_Creek <- Floods[Floods$names == "FISHEATING CREEK AT PALMDALE",]
+plot(Fisheating_Creek$datetime, Fisheating_Creek$gheight.ft, type="l", xlab="Date",
+     ylab = "Stage Height (ft)")
 
-# Presentation #1 - Select Function
-# Used to select variables (columns)
+# Peace River Plot
+Peace_River <- Floods[Floods$names == "PEACE RIVER AT US 17 AT ZOLFO SPRINGS",]
+plot(Peace_River$datetime, Peace_River$gheight.ft, type="l", xlab="Date",
+     ylab = "Stage Height (ft)")
 
-VariableA <- select(Floods, names, gheight.ft, datetime)
+# Santa Fe Plot
+Santa_Fe <- Floods["SANTA FE RIVER NEAR FORT WHITE",]
+plot(Santa_Fe$datetime, Santa_Fe$gheight.ft, type="l", xlab="Date",
+     ylab = "Stage Height (ft)")
 
-# Using colon to select a range 
-VariableB <- select(Floods, gheight.ft:datetime)
+# Withlachoochee River Plot
+Withlacoochee <- Floods["WITHLACOOCHEE RIVER AT US 301 AT TRILBY",]
+plot(Withlacoochee$datetime, Withlacoochee$gheight.ft, type="b", xlab="Date",
+     ylab = "Stage Height (ft)")
 
-# Eliminating select columns
-VariableC <- select(Floods, -datetime, -siteID)
-
-# Contain eliminates the letter e from data
-VariableE <- select(Floods, contains("e"), -agency)
-
-
-
-# Presentation #2 - Histograms
-
-Fisheating_Creek = Floods[1:208,]
-hist(Fisheating_Creek$gheight.ft, main = "Fisheating Creek Water Height", xlab = "Water Hieght (ft)", col = "cyan", border = "black")
-
-Santa_Fe_River <- Floods[4266:6473,]
-hist(Santa_Fe_River$gheight.ft, main = "Santa Fe River",
-     xlab = "Height (ft)",
-     col = "tomato2",
-     border = "blue")
-
-
-
-# Presentation #3 - If Else Function
-Floods$RiverLocation <- ifelse(Floods$names == 
-                                     "Santa Fe River Near Fort White", TRUE, FALSE)
-View(Floods)
 
 
 
