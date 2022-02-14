@@ -61,24 +61,40 @@ mutate(Floods,
 # Fisheating Creek Plot
 Fisheating_Creek <- Floods[Floods$names == "FISHEATING CREEK AT PALMDALE",]
 plot(Fisheating_Creek$datetime, Fisheating_Creek$gheight.ft, type="l", xlab="Date",
-     ylab = "Stage Height (ft)", main = "Fisheating River Stage Height")
+     ylab = "Stage Height (ft)", main = "Fisheating River Stage Height", col = "cadetblue3", lwd = 6.0, ylim=c(4,12))
 
 # Peace River Plot
 Peace_River <- Floods[Floods$names == "PEACE RIVER AT US 17 AT ZOLFO SPRINGS",]
 plot(Peace_River$datetime, Peace_River$gheight.ft, type="l", xlab="Date",
-     ylab = "Stage Height (ft)", main = "Peace River Stage Height")
+     ylab = "Stage Height (ft)", main = "Peace River Stage Height", col = "chartreuse3", lwd = 6.0, ylim=c(12,24))
 
 # Santa Fe Plot
 Santa_Fe <- Floods[Floods$names == "SANTA FE RIVER NEAR FORT WHITE",]
 plot(Santa_Fe$datetime, Santa_Fe$gheight.ft, type="l", xlab="Date",
-     ylab = "Stage height (ft)", main = "Santa Fe River Stage Height")
+     ylab = "Stage height (ft)", main = "Santa Fe River Stage Height", col = "chocolate2", lwd = 6.0, ylim=c(0,15))
 
 # Withlachoochee River Plot
 Withlacoochee_River <- Floods[6474:8681,]
 plot(Withlacoochee_River$datetime, Withlacoochee_River$gheight.ft, type="l", xlab="Date",
-     ylab = "Stage Height (ft)", main = "Withlacoochee River Stage Height")
+     ylab = "Stage Height (ft)", main = "Withlacoochee River Stage Height", col = "bisque3", lwd = 6.0, ylim=c(10,18))
 
 
+
+
+
+# Question 2 - What was the earliest date of occurrence for each flood category in each river? 
+# How quickly did changes in flood category occur for each river? 
+# Do you think there was enough time for advanced warning before a flood category changed?
+
+
+FloodsData_Q2 <- Floods %>% # data frame with pipe
+  group_by(names) %>% # group data frame by names
+  filter(gheight.ft >= action.ft) %>% # filtering for flood height 
+  summarise(EarliestAction.DateTime = min(datetime)) %>% # next summarize using min
+
+
+
+# Question 3 - Which river had the highest stream stage exceedance of its major flood category?
 
 
 
