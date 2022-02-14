@@ -89,12 +89,15 @@ plot(Withlacoochee_River$datetime, Withlacoochee_River$gheight.ft, type="l", xla
 
 FloodsData_Q2 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
-  filter(gheight.ft >= action.ft) %>% # filtering for flood height 
+  filter(gheight.ft >= action.ft , gheight.ft >= flood.ft ) %>% # filtering for flood height 
   summarise(EarliestAction.DateTime = min(datetime)) %>% # next summarize using min
 
 
 
 # Question 3 - Which river had the highest stream stage exceedance of its major flood category?
 
-
-
+FloodsData_Q3 <- Floods %>% # data frame with pipe
+  group_by(names) %>% # group data frame by names
+  filter(gheight.ft >= major.ft) %>% # filtering for flood height 
+  summarise(StreamStage.Major = max(gheight.ft)) # next summarize using min
+  
