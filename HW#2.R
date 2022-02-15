@@ -86,11 +86,29 @@ plot(Withlacoochee_River$datetime, Withlacoochee_River$gheight.ft, type="l", xla
 # How quickly did changes in flood category occur for each river? 
 # Do you think there was enough time for advanced warning before a flood category changed?
 
-
-FloodsData_Q2 <- Floods %>% # data frame with pipe
+# Finding earliest action for each river
+Action.Occurrence_Q2 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
-  filter(gheight.ft >= action.ft , gheight.ft >= flood.ft ) %>% # filtering for flood height 
-  summarise(EarliestAction.DateTime = min(datetime)) %>% # next summarize using min
+  filter(gheight.ft >= action.ft) %>% # filtering for action height 
+  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
+
+# Finding earliest flood for each river
+Flood.Occurrence_Q2 <- Floods %>% # data frame with pipe
+  group_by(names) %>% # group data frame by names
+  filter(gheight.ft >= flood.ft) %>% # filtering for flood height 
+  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
+
+# Finding earliest moderate flood for each river
+Moderate.Occurrence_Q2 <- Floods %>% # data frame with pipe
+  group_by(names) %>% # group data frame by names
+  filter(gheight.ft >= moderate.ft) %>% # filtering for moderate flood height 
+  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
+
+# Finding earliest major flood for each river
+Major.Occurrence_Q2 <- Floods %>% # data frame with pipe
+  group_by(names) %>% # group data frame by names
+  filter(gheight.ft >= major.ft) %>% # filtering for moderate flood height 
+  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
 
 
 
