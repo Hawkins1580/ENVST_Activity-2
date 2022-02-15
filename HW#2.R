@@ -82,8 +82,8 @@ plot(Withlacoochee_River$datetime, Withlacoochee_River$gheight.ft, type="l", xla
 
 
 
-# Question 2 - What was the earliest date of occurrence for each flood category in each river? 
-# How quickly did changes in flood category occur for each river? 
+# Question 2 
+# What was the earliest date of occurrence for each flood category in each river? 
 # Do you think there was enough time for advanced warning before a flood category changed?
 
 # Finding earliest action for each river
@@ -111,11 +111,22 @@ Major.Occurrence_Q2 <- Floods %>% # data frame with pipe
   summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
 
 
+# Question 2 
+# How quickly did changes in flood category occur for each river? 
+
+
+
+# Question 2 
+# Do you think there was enough time for advanced warning before a flood category changed?
+
+
 
 # Question 3 - Which river had the highest stream stage exceedance of its major flood category?
 
 FloodsData_Q3 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
   filter(gheight.ft >= major.ft) %>% # filtering for flood height 
-  summarise(StreamStage.Major = max(gheight.ft)) # next summarize using min
+  summarise(StreamStage_Major = max(gheight.ft), Max_Exceedance = max(max(gheight.ft) - major.ft)) # creating max stream hieght and max exceedance columns
+
+
   
