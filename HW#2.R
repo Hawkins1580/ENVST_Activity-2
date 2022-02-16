@@ -54,6 +54,8 @@ mutate(Floods,
 
 # Ready to work with group on presentation
 
+
+
 # Part #2
 
 # Question #1 - Make a separate plot of the stream stage data for each river
@@ -84,41 +86,30 @@ plot(Withlacoochee_River$datetime, Withlacoochee_River$gheight.ft, type="l", xla
 
 # Question 2 
 # What was the earliest date of occurrence for each flood category in each river? 
-# Do you think there was enough time for advanced warning before a flood category changed?
 
 # Finding earliest action for each river
 Action.Occurrence_Q2 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
   filter(gheight.ft >= action.ft) %>% # filtering for action height 
-  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
+  summarise(EarliestAction_DateTime = min(datetime)) # next summarize using min
 
 # Finding earliest flood for each river
 Flood.Occurrence_Q2 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
   filter(gheight.ft >= flood.ft) %>% # filtering for flood height 
-  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
+  summarise(EarliestFlood_DateTime = min(datetime)) # next summarize using min
 
 # Finding earliest moderate flood for each river
 Moderate.Occurrence_Q2 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
   filter(gheight.ft >= moderate.ft) %>% # filtering for moderate flood height 
-  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
+  summarise(EarliestModerate_DateTime = min(datetime)) # next summarize using min
 
 # Finding earliest major flood for each river
 Major.Occurrence_Q2 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
   filter(gheight.ft >= major.ft) %>% # filtering for moderate flood height 
-  summarise(EarliestAction.DateTime = min(datetime)) # next summarize using min
-
-
-# Question 2 
-# How quickly did changes in flood category occur for each river? 
-
-
-
-# Question 2 
-# Do you think there was enough time for advanced warning before a flood category changed?
-
+  summarise(EarliestMajor_DateTime = min(datetime)) # next summarize using min
 
 
 # Question 3 - Which river had the highest stream stage exceedance of its major flood category?
@@ -126,7 +117,7 @@ Major.Occurrence_Q2 <- Floods %>% # data frame with pipe
 FloodsData_Q3 <- Floods %>% # data frame with pipe
   group_by(names) %>% # group data frame by names
   filter(gheight.ft >= major.ft) %>% # filtering for flood height 
-  summarise(StreamStage_Major = max(gheight.ft), Max_Exceedance = max(max(gheight.ft) - major.ft)) # creating max stream hieght and max exceedance columns
+  summarise(Max_Major_Flood_Height = max(gheight.ft), Major_Flood_Threshhold = max(major.ft), Max_Exceedance = max(max(gheight.ft) - major.ft)) # creating max stream hieght and max exceedance columns
 
 
   
